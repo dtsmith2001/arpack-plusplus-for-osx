@@ -55,4 +55,4 @@ Fortunately, arpack++ is a header-only library. This simplifies installation sin
 
 ## Follow Armadillo Installation Instructions
 
-Enjoy.
+See [Conrad's Linux/Mac installation instructions](https://github.com/conradsnicta/armadillo-code) and enjoy.
