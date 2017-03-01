@@ -79,4 +79,6 @@ Note: I was not able to build the wrapper, so I just
     sudo cp -R armadillo /usr/local/include
     sudo cp -R armadillo_bits /usr/local/include
 
-from the ```include``` folder.
+from the ```include``` folder. There were several gfortran symbols that could not be found. I was not able to track down why clang didn't find the gfortran library. Attempting to mention it on the g++ link line didn't yield any positive results.
+
+If you find a solution to this, please update this document and send me a pull request.
