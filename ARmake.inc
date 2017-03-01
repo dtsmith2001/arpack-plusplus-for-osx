@@ -58,8 +58,10 @@ DIRS         = $(UTILdir) $(SRCdir)
 # %---------------------------------------------------%
 #
 ARPACKLIB  = $(home)/libarpack_$(PLAT).a
-LAPACKLIB =
-BLASLIB =
+# LAPACKLIB =
+# BLASLIB =
+LAPACKLIB = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libLAPACK.dylib
+BLASLIB = /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib
 #
 ALIBS =  $(ARPACKLIB) $(LAPACKLIB) $(BLASLIB)
 #
@@ -104,7 +106,7 @@ ALIBS =  $(ARPACKLIB) $(LAPACKLIB) $(BLASLIB)
 FC      = /usr/local/bin/gfortran
 FFLAGS	= -O
 
-LDFLAGS =
+LDFLAGS = -L/usr/local/gfortran/lib
 CD      = cd
 
 ECHO    = echo

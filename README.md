@@ -40,10 +40,27 @@ This file should be modified to point to the source for ARPACK. Save this file i
 
 ## Make and Install ARPACK
 
+Problems with ```etime``` led to a change to the base ARPACK code. Go to ```UTILS``` and edit ```second.f```. The declaration of ```etime``` should be
+
+    EXTERNAL REAL      ETIME
+
+The original code has two lines but ```gfortran``` would not link unless the lines were replaced with the one above. Save the file.
+
 Type ```make all``` in the ARPACK folder from a Terminal command line. At the end, you will have the library ```libarpack_osx.a``` in the ARPACK folder. Since there is no install target in the makefile, you will have to install it yourself using
 
-    sudo cp libarpack_osx.a /usr/local/lib
-    sudo link /usr/local/lib/libarpack_osx.a /usr/local/lib/libarpack.a
+    sudo mv libarpack_osx.a /usr/local/lib
+
+There is a note in the ranlib manual that led me to rebuild the library's table of contents after I moved it. So yes, please do
+
+    sudo ranlib /usr/local/lib/libarpack_osx.a
+
+If you don't do this step, the examples may not compile and run. I had to create a symlink in the ARPACK folder for the library
+
+    ln -s /usr/local/lib/libarpack_osx.a libarpack_osx.a
+
+Make a symlink to libarpack.a.
+
+    sudo ln -s /usr/local/lib/libarpack_osx.a /usr/local/lib/libarpack.a
 
 ## Install arpack++
 
@@ -56,3 +73,10 @@ Fortunately, arpack++ is a header-only library. This simplifies installation sin
 ## Follow Armadillo Installation Instructions
 
 See [Conrad's Linux/Mac installation instructions](https://github.com/conradsnicta/armadillo-code) and enjoy.
+
+Note: I was not able to build the wrapper, so I just
+
+    sudo cp -R armadillo /usr/local/include
+    sudo cp -R armadillo_bits /usr/local/include
+
+from the ```include``` folder.
